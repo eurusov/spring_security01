@@ -12,7 +12,7 @@ public interface UserDao {
 
     List<User> getUserList();
 
-    void updateUser(User user);
+//    void updateUser(User user);
 
     void deleteUser(User user);
 

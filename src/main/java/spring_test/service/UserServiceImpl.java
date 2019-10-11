@@ -65,7 +65,10 @@ public class UserServiceImpl implements UserService {
         if (existing == null) {
             return false;
         }
-        userDao.updateUser(user);
+        existing.setEmail(user.getEmail());
+        existing.setFirstName(user.getFirstName());
+        existing.setLastName(user.getLastName());
+//        userDao.updateUser(user);
         return true;
     }
 

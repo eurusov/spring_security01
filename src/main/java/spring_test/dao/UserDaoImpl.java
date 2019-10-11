@@ -35,10 +35,10 @@ public class UserDaoImpl implements UserDao {
         return session.createQuery("FROM User").list();
     }
 
-    @Override
-    public void updateUser(User user) {
-        sessionFactory.getCurrentSession().update(user);
-    }
+//    @Override
+//    public void updateUser(User user) {
+//        sessionFactory.getCurrentSession().update(user);
+//    }
 
     @Override
     public void deleteUser(User user) {

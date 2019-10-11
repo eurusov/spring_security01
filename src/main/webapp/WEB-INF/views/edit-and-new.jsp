@@ -36,19 +36,21 @@
 </header>
 
 <div class="content">
-    <form action=${empty user.username ? "new" : "edit"} method="POST">
+    <form action=${empty user.username ? "new" : "update"} method="POST">
         <c:if test="${!empty user.username}">
-            <input type="hidden" name="id" value="${user.username}"/>
+            <input type="hidden" name="username" value="${user.username}"/>
         </c:if>
-<%--        <input type="hidden" name="role" value="${user.role}"/>--%>
-        <label>Username
-            <input type="text" name="username" size="50" required
-                   value="${user.username}">
-        </label>
-        <label>Password
-            <input type="password" name="password" size="100" required
-                   value="${user.password}">
-        </label>
+        <c:if test="${empty user.username}">
+<%--            <input type="hidden" name="role" value="${user.role}"/>--%>
+            <label>Username
+                <input type="text" name="username" size="50" required
+                       value="${user.username}">
+            </label>
+            <label>Password
+                <input type="password" name="password" size="100" required
+                       value="${user.password}">
+            </label>
+        </c:if>
         <label>First name
             <input type="text" name="firstName" size="50"
                    value="${user.firstName}">

@@ -53,7 +53,7 @@ public class MyController {
     @PostMapping("/delete")
     public String deleteUser(@ModelAttribute("deleteUser") String deleteUser) {
         userService.deleteUser(deleteUser);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     @PostMapping("/edit")
