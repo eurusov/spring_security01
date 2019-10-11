@@ -34,7 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        String encoded = new BCryptPasswordEncoder().encode("1");
 //        System.out.println(encoded);
-        http.authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER")
+        http
+                .authorizeRequests().antMatchers("/list").hasRole("ADMIN")
+                .and()
+                .authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER")
                 .and()
                 .authorizeRequests().antMatchers("/login**").permitAll()
                 .and()
