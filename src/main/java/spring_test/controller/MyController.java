@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import spring_test.model.User;
 import spring_test.service.UserService;
 
@@ -27,7 +25,7 @@ public class MyController {
     public String index(Model model, Principal principal) {
         User loggedUser = userService.getUserByUsername(principal.getName());
         model.addAttribute("principal", loggedUser);
-        model.addAttribute("message", "You are logged in as " + principal.getName());
+//        model.addAttribute("message", "You are logged in as " + principal.getName());
         return "index";
     }
 
@@ -55,6 +53,22 @@ public class MyController {
     @PostMapping("/delete")
     public String deleteUser(@ModelAttribute("deleteUser") String deleteUser) {
         userService.deleteUser(deleteUser);
+        return "redirect:/";
+    }
+
+    @PostMapping("/edit")
+    public String showEditPage(@RequestParam("editUsername") String editUsername, Model model) {
+        User user = userService.getUserByUsername(editUsername);
+        if (user == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("user", user);
+        return "edit-and-new";
+    }
+
+    @PostMapping("/update")
+    public String updateEditedUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
         return "redirect:/";
     }
 }

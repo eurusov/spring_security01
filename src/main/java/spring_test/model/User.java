@@ -83,6 +83,10 @@ public class User {
         this.enabled = enabled;
     }
 
+    public void setAuthorities(Set<Authorities> authorities) {
+        this.authorities = authorities;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -97,6 +101,7 @@ public class User {
     }
 
     @Override
+    // Equals if username equals. Maybe it is not necessary.
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -104,11 +109,11 @@ public class User {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        User user = (User) o;
-        return username.equals(user.username);
+        return username.equals(((User) o).username);
     }
 
     @Override
+    // Hashcode from username. Maybe it is not necessary.
     public int hashCode() {
         return username.hashCode();
     }

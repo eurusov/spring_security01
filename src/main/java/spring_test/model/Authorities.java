@@ -18,6 +18,7 @@ public class Authorities {
     @JoinColumn(name = "username")
     private User user;
 
+    // Constructors
     public Authorities() {
     }
 
@@ -25,16 +26,30 @@ public class Authorities {
         this.user = user;
     }
 
+    // Getters
+    public Integer getAuthorityId() {
+        return authorityId;
+    }
+
     public String getAuthority() {
         return authority;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public User getUser() {
+        return user;
+    }
+
+    // Setters
+    public void setAuthorityId(Integer authorityId) {
+        this.authorityId = authorityId;
     }
 
     public void setAuthority(String authority) {
         this.authority = authority;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -42,7 +57,7 @@ public class Authorities {
         return "Authorities{" +
                 "authorityId=" + authorityId +
                 ", authority='" + authority + '\'' +
-                ", user=" + user +
+                ", username=" + user.getUsername() +  // User replaced to username, to avoid cyclic dependency and stack overflow.
                 '}';
     }
 }

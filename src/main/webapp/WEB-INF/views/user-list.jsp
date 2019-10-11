@@ -110,7 +110,11 @@
                 <td><c:out value="${user.username}"/></td>
 <%--                <td><c:out value="${user.username}"/></td>--%>
                 <td>
-                    <a class="action_link" href="edit?id=${user.username}">Edit</a>
+                    <form action="edit" method="post">
+                        <input type="hidden" name="editUsername" value="${user.username}"/>
+                        <button type="submit">EDIT</button>
+                    </form>
+<%--                    <a class="action_link" href="edit?id=${user.username}">Edit</a>--%>
 <%--                    <a class="action_link" href="delete?id=${user.username}">Delete</a>--%>
                 </td>
                 <td>

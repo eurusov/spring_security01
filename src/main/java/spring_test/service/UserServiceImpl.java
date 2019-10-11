@@ -46,7 +46,10 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     @Override
     public User getUserByUsername(String username) {
-        return userDao.getUserByUsername(username);
+        User user = userDao.getUserByUsername(username);
+        //noinspection ResultOfMethodCallIgnored
+        user.getAuthorities().size();  // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
+        return user;
     }
 
     @Transactional(readOnly = true)
