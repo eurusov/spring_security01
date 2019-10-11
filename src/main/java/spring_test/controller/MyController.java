@@ -8,6 +8,7 @@ import spring_test.model.User;
 import spring_test.service.UserService;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class MyController {
@@ -25,5 +26,12 @@ public class MyController {
         model.addAttribute("principal", loggedUser);
         model.addAttribute("message", "You are logged in as " + principal.getName());
         return "index";
+    }
+
+    @GetMapping("/list")
+    public String list(Model model) {
+        List<User> userList = userService.getUserList();
+        model.addAttribute("listUser", userList);
+        return "user-list";
     }
 }

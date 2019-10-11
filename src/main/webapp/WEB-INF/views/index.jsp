@@ -79,6 +79,7 @@
         </tr>
     </table>
     <a id="edit_link" class="link_button" href="edit?id=${principal.getUsername()}">Edit profile</a>
+    <a id="list_link" class="link_button" href="list">User List</a>
 </div>
 </body>
 </html>
