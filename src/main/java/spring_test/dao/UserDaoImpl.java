@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import spring_test.model.User;
 
 @Repository
-public class UserDetailsDaoImp implements UserDetailsDao {
+public class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory;
 
@@ -16,7 +16,7 @@ public class UserDetailsDaoImp implements UserDetailsDao {
     }
 
     @Override
-    public User findUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return sessionFactory.getCurrentSession().get(User.class, username);
     }
 }

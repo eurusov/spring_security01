@@ -1,30 +1,35 @@
 package spring_test.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import spring_test.dao.UserDetailsDao;
+import spring_test.dao.UserDao;
 import spring_test.model.Authorities;
 import spring_test.model.User;
 
-@Service("userDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Service("userService")
+public class UserServiceImpl implements UserService {
 
-    private UserDetailsDao userDetailsDao;
+    private UserDao userDao;
 
     @Autowired
-    private void setUserDao(UserDetailsDao userDetailsDao) {
-        this.userDetailsDao = userDetailsDao;
+    private void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public User getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
     }
 
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDetailsDao.findUserByUsername(username);
+        User user = userDao.getUserByUsername(username);
         UserBuilder builder;
         if (user != null) {
             builder = org.springframework.security.core.userdetails.User.withUsername(username);
@@ -36,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
             builder.authorities(authorities);
         } else {
-            throw new UsernameNotFoundException("User not found.");
+            throw new UsernameNotFoundException("User not found: " + username);
         }
         return builder.build();
     }

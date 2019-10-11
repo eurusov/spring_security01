@@ -21,6 +21,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Authorities> authorities = new HashSet<>();
 
+    public String getUsername() {
+        return username;
+    }
 
     public String getPassword() {
         return password;
