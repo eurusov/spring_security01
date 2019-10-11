@@ -90,24 +90,24 @@
 <div class="content">
     <table id="users">
         <tr>
-            <th id="th_id">ID</th>
-            <th id="th_email">E-mail</th>
+<%--            <th id="th_id">ID</th>--%>
+            <th id="th_email">Username</th>
             <th id="th_psw">Password</th>
             <th id="th_fname">First Name</th>
             <th id="th_lname">Last Name</th>
-            <th id="th_country">Country</th>
+            <th id="th_country">E-mail</th>
             <th id="th_role">User role</th>
             <th id="th_action">Actions</th>
         </tr>
         <c:forEach var="user" items="${listUser}">
             <tr>
                 <td><c:out value="${user.username}"/></td>
+                <td><c:out value="${user.password}"/></td>
+                <td><c:out value="${user.firstName}"/></td>
+                <td><c:out value="${user.lastName}"/></td>
+                <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.username}"/></td>
-                <td><c:out value="${user.username}"/></td>
-                <td><c:out value="${user.username}"/></td>
-                <td><c:out value="${user.username}"/></td>
-                <td><c:out value="${user.username}"/></td>
-                <td><c:out value="${user.username}"/></td>
+<%--                <td><c:out value="${user.username}"/></td>--%>
                 <td>
                     <a class="action_link" href="edit?id=${user.username}">Edit</a>
                     <a class="action_link" href="delete?id=${user.username}">Delete</a>
