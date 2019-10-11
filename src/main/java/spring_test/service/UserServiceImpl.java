@@ -10,6 +10,8 @@ import spring_test.dao.UserDao;
 import spring_test.model.Authorities;
 import spring_test.model.User;
 
+import java.util.List;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
@@ -20,10 +22,49 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
+    @Transactional
+    @Override
+    public boolean addUser(User user) {
+        User existing = userDao.getUserByUsername(user.getUsername());
+        if (existing != null) {
+            return false;
+        }
+        userDao.addUser(user);
+        return true;
+    }
+
     @Transactional(readOnly = true)
     @Override
     public User getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> getUserList() {
+        return userDao.getUserList();
+    }
+
+    @Transactional
+    @Override
+    public boolean updateUser(User user) {
+        User existing = userDao.getUserByUsername(user.getUsername());
+        if (existing == null) {
+            return false;
+        }
+        userDao.updateUser(user);
+        return true;
+    }
+
+    @Transactional
+    @Override
+    public boolean deleteUser(String username) {
+        User existing = userDao.getUserByUsername(username);
+        if (existing == null) {
+            return false;
+        }
+        userDao.deleteUser(existing);
+        return true;
     }
 
     @Transactional(readOnly = true)
