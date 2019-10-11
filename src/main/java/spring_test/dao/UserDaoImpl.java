@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import spring_test.model.Authorities;
 import spring_test.model.User;
 
 import java.util.List;
@@ -43,5 +44,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void deleteUser(User user) {
         sessionFactory.getCurrentSession().delete(user);
+    }
+
+    @Override
+    public void addUserAuthority(User user, String authority) {
+        sessionFactory.getCurrentSession().save(new Authorities(authority, user));
     }
 }

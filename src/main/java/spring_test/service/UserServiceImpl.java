@@ -67,6 +67,12 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Transactional
+    @Override
+    public void addUserAuthority(User user, String authority) {
+        userDao.addUserAuthority(user, authority);
+    }
+
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

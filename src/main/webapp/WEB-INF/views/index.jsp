@@ -54,7 +54,7 @@
 <%--<jsp:useBean id="loggedUser" scope="session" class="model.User"/>--%>
 <header>
     <div class="content">
-        <h1 id="header_text">Welcome, ${principal.getUsername()}</h1>
+        <h1 id="header_text">Welcome, ${principal.username}</h1>
         <a id="logout_link" class="link_button" href="logout">Logout</a>
     </div>
 </header>
@@ -62,23 +62,23 @@
     <table id="user_table">
         <caption><p id="table_caption">Your profile details:</p></caption>
         <tr>
-            <td class="field_name">E-mail:</td>
-            <td><c:out value="${principal.getUsername()}"/></td>
+            <td class="field_name">Username:</td>
+            <td><c:out value="${principal.username}"/></td>
         </tr>
         <tr>
             <td class="field_name">First name:</td>
-            <td><c:out value="${principal.getUsername()}"/></td>
+            <td><c:out value="${principal.firstName}"/></td>
         </tr>
         <tr>
             <td class="field_name">Last name:</td>
-            <td><c:out value="${principal.getUsername()}"/></td>
+            <td><c:out value="${principal.lastName}"/></td>
         </tr>
         <tr>
-            <td class="field_name">Country:</td>
-            <td><c:out value="${principal.getUsername()}"/></td>
+            <td class="field_name">E-mail:</td>
+            <td><c:out value="${principal.email}"/></td>
         </tr>
     </table>
-    <a id="edit_link" class="link_button" href="edit?id=${principal.getUsername()}">Edit profile</a>
+    <a id="edit_link" class="link_button" href="edit?id=${principal.username}">Edit profile</a>
     <a id="list_link" class="link_button" href="list">User List</a>
 </div>
 </body>

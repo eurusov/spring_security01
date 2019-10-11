@@ -16,4 +16,6 @@ public interface UserService extends UserDetailsService {
     boolean updateUser(User user);
 
     boolean deleteUser(String username);
+
+    void addUserAuthority(User user, String authority);
 }

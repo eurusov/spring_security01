@@ -11,10 +11,25 @@ public class Authorities {
     private String authority;
 
     @ManyToOne
-    @JoinColumn(name = "username", nullable=false)
+    @JoinColumn(name = "username", nullable = false)
     private User user;
+
+    public Authorities() {
+    }
+
+    public Authorities(String authority, User user) {
+        this.authority = authority;
+        this.user = user;
+    }
 
     public String getAuthority() {
         return authority;
+    }
+
+    @Override
+    public String toString() {
+        return "Authorities{" +
+                "authority='" + authority + '\'' +
+                '}';
     }
 }
