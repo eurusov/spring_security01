@@ -24,11 +24,21 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean addUser(User user) {
-        User existing = userDao.getUserByUsername(user.getUsername());
+    public boolean addUser(String username, String password, String firstName, String lastName, String email) {
+        User existing = userDao.getUserByUsername(username);
         if (existing != null) {
             return false;
         }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setEnabled(true);
+        Authorities authority = new Authorities(user);
+        authority.setAuthority("ROLE_USER");
+        user.getAuthorities().add(authority);
         userDao.addUser(user);
         return true;
     }
@@ -65,12 +75,6 @@ public class UserServiceImpl implements UserService {
         }
         userDao.deleteUser(existing);
         return true;
-    }
-
-    @Transactional
-    @Override
-    public void addUserAuthority(User user, String authority) {
-        userDao.addUserAuthority(user, authority);
     }
 
     @Transactional(readOnly = true)

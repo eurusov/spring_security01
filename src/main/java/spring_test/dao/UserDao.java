@@ -16,5 +16,4 @@ public interface UserDao {
 
     void deleteUser(User user);
 
-    void addUserAuthority(User user, String authority);
 }

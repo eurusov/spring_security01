@@ -7,18 +7,21 @@ import javax.persistence.*;
 public class Authorities {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "authority_id")
+    private Integer authorityId;
+
     @Column(name = "authority")
     private String authority;
 
     @ManyToOne
-    @JoinColumn(name = "username", nullable = false)
+    @JoinColumn(name = "username")
     private User user;
 
     public Authorities() {
     }
 
-    public Authorities(String authority, User user) {
-        this.authority = authority;
+    public Authorities(User user) {
         this.user = user;
     }
 
@@ -26,10 +29,20 @@ public class Authorities {
         return authority;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
     @Override
     public String toString() {
         return "Authorities{" +
-                "authority='" + authority + '\'' +
+                "authorityId=" + authorityId +
+                ", authority='" + authority + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

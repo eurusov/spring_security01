@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
-    boolean addUser(User user);
+    boolean addUser(String username, String password, String firstName, String lastName, String email);
 
     User getUserByUsername(String username);
 
@@ -17,5 +17,4 @@ public interface UserService extends UserDetailsService {
 
     boolean deleteUser(String username);
 
-    void addUserAuthority(User user, String authority);
 }

@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        String encoded = new BCryptPasswordEncoder().encode("1");
 //        System.out.println(encoded);
         http
-                .authorizeRequests().antMatchers("/list").hasRole("ADMIN")
+                .authorizeRequests().antMatchers("/list", "/delete").hasRole("ADMIN")
                 .and()
                 .authorizeRequests().antMatchers("/new").permitAll()
                 .and()

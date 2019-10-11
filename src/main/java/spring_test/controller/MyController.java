@@ -47,10 +47,14 @@ public class MyController {
 
     @PostMapping("/new")
     public String addNewUser(@ModelAttribute("user") User user) {
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        user.setEnabled(true);
-        userService.addUser(user);
-        userService.addUserAuthority(user, "ROLE_USER");
+        String password = new BCryptPasswordEncoder().encode(user.getPassword());
+        userService.addUser(user.getUsername(), password, user.getFirstName(), user.getLastName(), user.getEmail());
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete")
+    public String deleteUser(@ModelAttribute("deleteUser") String deleteUser) {
+        userService.deleteUser(deleteUser);
         return "redirect:/";
     }
 }

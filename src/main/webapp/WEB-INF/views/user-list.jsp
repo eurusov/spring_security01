@@ -98,6 +98,7 @@
             <th id="th_country">E-mail</th>
             <th id="th_role">User role</th>
             <th id="th_action">Actions</th>
+            <th id="th_delete">Delete</th>
         </tr>
         <c:forEach var="user" items="${listUser}">
             <tr>
@@ -110,7 +111,13 @@
 <%--                <td><c:out value="${user.username}"/></td>--%>
                 <td>
                     <a class="action_link" href="edit?id=${user.username}">Edit</a>
-                    <a class="action_link" href="delete?id=${user.username}">Delete</a>
+<%--                    <a class="action_link" href="delete?id=${user.username}">Delete</a>--%>
+                </td>
+                <td>
+                    <form action="delete" method="post">
+                        <input type="hidden" name="deleteUser" value="${user.username}"/>
+                        <button type="submit">DELETE</button>
+                    </form>
                 </td>
             </tr>
         </c:forEach>
