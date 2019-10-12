@@ -1,39 +1,42 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: eu
-  Date: 10.10.2019
-  Time: 6:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-
+<%request.setCharacterEncoding("UTF-8");%>
 <html>
 <head>
-    <title>Spring Security Test</title>
+    <title>User Management Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300&display=swap" rel="stylesheet">
+    <style>
+        <%@include file="general.css"%>
+        <%@include file="form.css"%>
+    </style>
 </head>
 <body>
-<h1>Spring MVC 5 + Spring Security 5 + Hibernate 5 example</h1>
-<h4>Login Form</h4>
+<header>
+    <div class="content">
+        <h1 class="content" id="header_text">Login</h1>
+    </div>
+</header>
 
-<form action='<spring:url value="/loginAction"/>' method="post">
-    <table>
-        <tr>
-            <td>Username</td>
-            <td><input type="text" name="username"></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="password"></td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit">Login</button>
-            </td>
-        </tr>
-    </table>
-</form>
-<br/>
+<div class="content">
+    <form action='<spring:url value="/loginAction"/>' method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" size="45"
+               value="${user.username}"
+        >
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" size="45"
+               value="${user.password}"
+        >
+        <input type="submit" value="Login">
+    </form>
+</div>
+<div class="content">
+    <p>
+        Don’t have an account? <a href="new">Sign up now</a>
+        <%--        <a href="list">List All Users</a>--%>
+    </p>
+</div>
 </body>
 </html>
