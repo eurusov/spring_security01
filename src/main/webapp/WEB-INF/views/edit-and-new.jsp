@@ -19,19 +19,12 @@
 <body>
 
 <c:set var="btm_text" value="Back to main"/>
-<%--<c:if test="${loggedUser.role != null}">--%>
-<%--    <c:set var="btm_text" value="User info"/>--%>
-<%--</c:if>--%>
-<%--<c:if test="${loggedUser.role.equals('admin')}">--%>
-<%--    <c:set var="btm_text" value="User list"/>--%>
-<%--</c:if>--%>
-
 <header>
     <div class="content">
         <h1 id="header_text">${empty user.username ? "Register new user" : "Edit user"}</h1>
-        <%--        <c:if test="${loggedUser.id != null}">--%>
-        <%--            <a id="logout_link" class="link_button" href="logout">Logout</a>--%>
-        <%--        </c:if>--%>
+                <c:if test="${!empty principal}">
+                    <a id="logout_link" class="link_button" href="logout">Logout</a>
+                </c:if>
     </div>
 </header>
 

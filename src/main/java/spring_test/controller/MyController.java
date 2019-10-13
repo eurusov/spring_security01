@@ -37,7 +37,8 @@ public class MyController {
     }
 
     @GetMapping("/new")
-    public String newUser(Model model) {
+    public String newUser(Model model, Principal principal) {
+        model.addAttribute("principal", principal);
         User user = new User();
         model.addAttribute("user", user);
         return "edit-and-new";
