@@ -55,7 +55,11 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     @Override
     public List<User> getUserList() {
-        return userDao.getUserList();
+        List<User> userList = userDao.getUserList();
+        // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
+        //noinspection ResultOfMethodCallIgnored
+        userList.forEach((u) -> u.getAuthorities().size());
+        return userList;
     }
 
     @Transactional

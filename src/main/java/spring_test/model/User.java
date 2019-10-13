@@ -7,6 +7,11 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
     @Id
     @Column(name = "username", unique = true, nullable = false)
     private String username;
@@ -30,6 +35,10 @@ public class User {
     private Set<Authorities> authorities = new HashSet<>();
 
     //    Getters
+    public Long getUserId() {
+        return userId;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -85,6 +94,18 @@ public class User {
 
     public void setAuthorities(Set<Authorities> authorities) {
         this.authorities = authorities;
+    }
+
+
+    public String getRole() {
+        String role = "USER";
+        for (Authorities authority : authorities) {
+            if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                role = "ADMIN";
+                break;
+            }
+        }
+        return role;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Authorities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "authority_id")
-    private Integer authorityId;
+    private Long authorityId;
 
     @Column(name = "authority")
     private String authority;
@@ -27,7 +27,7 @@ public class Authorities {
     }
 
     // Getters
-    public Integer getAuthorityId() {
+    public Long getAuthorityId() {
         return authorityId;
     }
 
@@ -40,7 +40,7 @@ public class Authorities {
     }
 
     // Setters
-    public void setAuthorityId(Integer authorityId) {
+    public void setAuthorityId(Long authorityId) {
         this.authorityId = authorityId;
     }
 

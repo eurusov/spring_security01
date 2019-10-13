@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
     @SuppressWarnings("unchecked")
     public List<User> getUserList() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("FROM User").list();
+        return session.createQuery("FROM User u ORDER BY u.userId").list();
     }
 
 //    @Override

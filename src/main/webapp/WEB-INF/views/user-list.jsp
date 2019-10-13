@@ -97,8 +97,8 @@
             <th id="th_lname">Last Name</th>
             <th id="th_country">E-mail</th>
             <th id="th_role">User role</th>
-            <th id="th_action">Actions</th>
-            <th id="th_delete">Delete</th>
+            <th></th>
+            <th></th>
         </tr>
         <c:forEach var="user" items="${listUser}">
             <tr>
@@ -107,8 +107,7 @@
                 <td><c:out value="${user.firstName}"/></td>
                 <td><c:out value="${user.lastName}"/></td>
                 <td><c:out value="${user.email}"/></td>
-                <td><c:out value="${user.username}"/></td>
-<%--                <td><c:out value="${user.username}"/></td>--%>
+                <td><c:out value="${user.getRole()}"/></td>
                 <td>
                     <form action="edit" method="post">
                         <input type="hidden" name="editUsername" value="${user.username}"/>

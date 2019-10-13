@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="8dca9384-ae94-45ca-840b-8457ab6d44e7">
+    <data-source source="LOCAL" name="db" uuid="e9535166-93fd-4f0a-a253-bc7f3c29078f">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>jdbc.properties
 
-H:/java_mentor/spring_security_test/src/main/resources/db.properties</remarks>
+H:/java_mentor/spring_security01/src/main/resources/db.properties</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/spring_security_test?serverTimezone=UTC</jdbc-url>
       <driver-properties>
