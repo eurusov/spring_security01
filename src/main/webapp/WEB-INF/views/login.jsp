@@ -13,16 +13,14 @@
     </style>
 </head>
 <body>
-<%--<header>--%>
-<%--    <div class="content">--%>
-<%--        <h1 class="content" id="header_text">Login</h1>--%>
-<%--    </div>--%>
-<%--</header>--%>
 <div style="background-color: var(--header-background)">
     <div class="content">
         <ul>
-            <li style="border-right: none">
+            <li>
                 <a class="active" href="">Login</a>
+            </li>
+            <li>
+                <a href="new">New User</a>
             </li>
         </ul>
     </div>
@@ -44,7 +42,6 @@
 <div class="content">
     <p>
         Don’t have an account? <a href="new">Sign up now</a>
-        <%--        <a href="list">List All Users</a>--%>
     </p>
 </div>
 </body>

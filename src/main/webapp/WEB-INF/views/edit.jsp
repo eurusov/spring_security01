@@ -13,33 +13,29 @@
 </head>
 <body>
 
-<%--<header>--%>
-<%--    <div class="content">--%>
-<%--        <h1 id="header_text">${empty user.username ? "Register new user" : "Edit user"}</h1>--%>
-<%--                <c:if test="${!empty principal}">--%>
-<%--                    <a id="logout_link" class="link_button" href="logout">Logout</a>--%>
-<%--                </c:if>--%>
-<%--    </div>--%>
-<%--</header>--%>
-
+<c:if test='${principal.getRole() eq "ADMIN"}'>
+    <c:set var="admin" value="1"/>
+</c:if>
 
 <div style="background-color: var(--header-background)">
     <div class="content">
         <ul>
-            <li style="border-right: none">
+            <li>
                 <a href=".">Home</a>
             </li>
-            <li style="border-right: none">
-                <a href="list">User List</a>
-            </li>
-            <li>
-                <a ${empty user.username ? "class=active" : ""} href="new">New User</a>
-            </li>
-            <li style="float:right">
+            <c:if test='${admin == 1}'>
+                <li>
+                    <a href="list">User List</a>
+                </li>
+                <li>
+                    <a href="new">New User</a>
+                </li>
+            </c:if>
+            <li style="float:right; margin: 0">
                 <a href="logout">Logout</a>
             </li>
-            <li style="float:right; border-right: none">
-                <a ${!empty user.username ? "class=active" : ""} href="edit">Edit</a>
+            <li style="float:right">
+                <a class="active" href="edit">Edit</a>
             </li>
         </ul>
     </div>

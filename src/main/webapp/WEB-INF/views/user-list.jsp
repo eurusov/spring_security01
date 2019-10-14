@@ -19,17 +19,20 @@
 <div style="background-color: var(--header-background)">
     <div class="content">
         <ul>
-            <li style="border-right: none">
+            <li>
                 <a href=".">Home</a>
             </li>
-            <li style="border-right: none">
+            <li>
                 <a class="active" href="list">User List</a>
             </li>
             <li>
                 <a href="new">New User</a>
             </li>
-            <li style="float:right">
+            <li style="float:right; margin: 0">
                 <a href="logout">Logout</a>
+            </li>
+            <li style="float:right">
+                <a href="edit">Edit profile</a>
             </li>
         </ul>
     </div>
