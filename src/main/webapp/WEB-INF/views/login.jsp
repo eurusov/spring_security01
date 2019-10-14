@@ -13,12 +13,21 @@
     </style>
 </head>
 <body>
-<header>
+<%--<header>--%>
+<%--    <div class="content">--%>
+<%--        <h1 class="content" id="header_text">Login</h1>--%>
+<%--    </div>--%>
+<%--</header>--%>
+<div style="background-color: var(--header-background)">
     <div class="content">
-        <h1 class="content" id="header_text">Login</h1>
+        <ul>
+            <li style="border-right: none">
+                <a class="active" href="">Login</a>
+            </li>
+        </ul>
     </div>
-</header>
-
+</div>
+<div style="background-color: var(--header-active); padding-top: 2px; margin: 0"></div>
 <div class="content">
     <form action='<spring:url value="/loginAction"/>' method="post">
         <label for="username">Username</label>

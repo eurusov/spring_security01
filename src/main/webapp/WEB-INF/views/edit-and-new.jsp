@@ -9,24 +9,42 @@
     <style>
         <%@include file="general.css"%>
         <%@include file="form.css"%>
-        #bottom_link {
-            width: 160px;
-            float: left;
-            border-radius: 4px;
-        }
     </style>
 </head>
 <body>
 
-<c:set var="btm_text" value="Back to main"/>
-<header>
+<%--<header>--%>
+<%--    <div class="content">--%>
+<%--        <h1 id="header_text">${empty user.username ? "Register new user" : "Edit user"}</h1>--%>
+<%--                <c:if test="${!empty principal}">--%>
+<%--                    <a id="logout_link" class="link_button" href="logout">Logout</a>--%>
+<%--                </c:if>--%>
+<%--    </div>--%>
+<%--</header>--%>
+
+
+<div style="background-color: var(--header-background)">
     <div class="content">
-        <h1 id="header_text">${empty user.username ? "Register new user" : "Edit user"}</h1>
-                <c:if test="${!empty principal}">
-                    <a id="logout_link" class="link_button" href="logout">Logout</a>
-                </c:if>
+        <ul>
+            <li style="border-right: none">
+                <a href=".">Home</a>
+            </li>
+            <li style="border-right: none">
+                <a href="list">User List</a>
+            </li>
+            <li>
+                <a ${empty user.username ? "class=active" : ""} href="new">New User</a>
+            </li>
+            <li style="float:right">
+                <a href="logout">Logout</a>
+            </li>
+            <li style="float:right; border-right: none">
+                <a ${!empty user.username ? "class=active" : ""} href="edit">Edit</a>
+            </li>
+        </ul>
     </div>
-</header>
+</div>
+<div style="background-color: var(--header-active); padding-top: 2px; margin: 0"></div>
 
 <div class="content">
     <form action=${empty user.username ? "new" : "update"} method="POST">
@@ -34,7 +52,6 @@
             <input type="hidden" name="username" value="${user.username}"/>
         </c:if>
         <c:if test="${empty user.username}">
-<%--            <input type="hidden" name="role" value="${user.role}"/>--%>
             <label>Username
                 <input type="text" name="username" size="50" required
                        value="${user.username}">
@@ -58,7 +75,6 @@
         </label>
         <input type="submit" value="save">
     </form>
-    <a id="bottom_link" class="link_button" href="${pageContext.request.contextPath}">${btm_text}</a>
 </div>
 </body>
 </html>

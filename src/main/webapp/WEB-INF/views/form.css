@@ -35,7 +35,7 @@ input[type=text][disabled], input[type=password]:disabled {
 }
 
 input[type=submit] {
-    background-color: #4CAF50;
+    background-color: var(--main-green);
     color: white;
     padding: 14px 20px;
     border: none;
@@ -44,5 +44,5 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: var(--hoover-green);
 }

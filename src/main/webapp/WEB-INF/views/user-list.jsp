@@ -10,111 +10,57 @@
     <%--    <link href="${pageContext.request.contextPath}/general.css" rel="stylesheet" type="text/css">--%>
     <style>
         <%@include file="general.css"%>
-        #users {
-            margin-top: 30px;
-            border-collapse: collapse;
-            width: 1180px;
-        }
-
-        #users td, #users th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #users tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        #users tr:hover {
-            background-color: #ddd;
-        }
-
-        #users th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        #th_id {
-            width: 3%;
-        }
-
-        #th_email {
-            width: 8%;
-        }
-
-        #th_psw {
-            width: 8%;
-        }
-
-        #th_fname {
-            width: 9%;
-        }
-
-        #th_lname {
-            width: 9%;
-        }
-
-        #th_country {
-            width: 6%;
-        }
-
-        #th_role {
-            width: 4%;
-        }
-
-        #th_action {
-            width: 6%;
-        }
-
-        .action_link {
-            margin-right: 16px;
-            color: #46c24a;
-            text-decoration: none;
-        }
-
-        .action_link:hover {
-            color: #c71a1a;
+        table {
+            width: 100%
         }
     </style>
 </head>
 <body>
-<header>
+<div style="background-color: var(--header-background)">
     <div class="content">
-        <h1 id="header_text">List of users</h1>
-        <a id="logout_link" class="link_button" href="logout">Logout</a>
+        <ul>
+            <li style="border-right: none">
+                <a href=".">Home</a>
+            </li>
+            <li style="border-right: none">
+                <a class="active" href="list">User List</a>
+            </li>
+            <li>
+                <a href="new">New User</a>
+            </li>
+            <li style="float:right">
+                <a href="logout">Logout</a>
+            </li>
+        </ul>
     </div>
-</header>
+</div>
+<div style="background-color: var(--header-active); padding-top: 2px; margin: 0"></div>
 <div class="content">
     <table id="users">
         <tr>
-            <th id="th_email">Username</th>
-            <th id="th_psw">Password</th>
-            <th id="th_fname">First Name</th>
-            <th id="th_lname">Last Name</th>
-            <th id="th_country">E-mail</th>
-            <th id="th_role">User role</th>
+            <th id="th1">Username</th>
+            <th id="th2">First Name</th>
+            <th id="th3">Last Name</th>
+            <th id="th4">E-mail</th>
+            <th id="th5">User role</th>
             <th></th>
             <th></th>
         </tr>
         <c:forEach var="user" items="${listUser}">
             <tr>
                 <td><c:out value="${user.username}"/></td>
-                <td><c:out value="${user.password}"/></td>
                 <td><c:out value="${user.firstName}"/></td>
                 <td><c:out value="${user.lastName}"/></td>
                 <td><c:out value="${user.email}"/></td>
                 <td><c:out value="${user.getRole()}"/></td>
                 <td>
-                    <form action="edit" method="post">
+                    <form action="edit" method="post" style="margin: 0 0">
                         <input type="hidden" name="editUsername" value="${user.username}"/>
                         <button type="submit">EDIT</button>
                     </form>
                 </td>
                 <td>
-                    <form action="delete" method="post">
+                    <form action="delete" method="post" style="margin: 0 0">
                         <input type="hidden" name="deleteUser" value="${user.username}"/>
                         <button type="submit">DELETE</button>
                     </form>
@@ -122,7 +68,6 @@
             </tr>
         </c:forEach>
     </table>
-    <a id="add_link" class="link_button" href="new">Add User</a>
 </div>
 
 </body>
