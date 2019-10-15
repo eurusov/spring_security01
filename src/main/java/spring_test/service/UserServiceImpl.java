@@ -91,19 +91,29 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.getUserByUsername(username);
-        UserBuilder builder;
-        if (user != null) {
-            builder = org.springframework.security.core.userdetails.User.withUsername(username);
-            builder.disabled(!user.isEnabled());
-            builder.password(user.getPassword());
-
-            String[] authorities = user.getAuthorities()
-                    .stream().map(Authorities::getAuthority).toArray(String[]::new);
-
-            builder.authorities(authorities);
-        } else {
-            throw new UsernameNotFoundException("User not found: " + username);
-        }
-        return builder.build();
+        // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
+        //noinspection ResultOfMethodCallIgnored
+        user.getAuthorities().size();
+        return user;
     }
+
+//    @Transactional(readOnly = true)
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userDao.getUserByUsername(username);
+//        UserBuilder builder;
+//        if (user != null) {
+//            builder = org.springframework.security.core.userdetails.User.withUsername(username);
+//            builder.disabled(!user.isEnabled());
+//            builder.password(user.getPassword());
+//
+//            String[] authorities = user.getAuthorities()
+//                    .stream().map(Authorities::getAuthority).toArray(String[]::new);
+//
+//            builder.authorities(authorities);
+//        } else {
+//            throw new UsernameNotFoundException("User not found: " + username);
+//        }
+//        return builder.build();
+//    }
 }
