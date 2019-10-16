@@ -11,12 +11,12 @@ import java.io.IOException;
 import java.util.Set;
 
 @Configuration
-public class RoleSuccessHandler implements AuthenticationSuccessHandler {
+public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-
+        System.out.println(roles);
         if (roles.contains("ROLE_ADMIN")) {
             response.sendRedirect("list");
             System.out.println("ADMIN");

@@ -13,10 +13,9 @@ import spring_test.model.User;
 import spring_test.service.UserService;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
-public class MyController {
+public class UserController {
 
     private UserService userService;
 
@@ -32,15 +31,8 @@ public class MyController {
         return "index";
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
-        List<User> userList = userService.getUserList();
-        model.addAttribute("listUser", userList);
-        return "user-list";
-    }
-
     @GetMapping("/new")
-    public String newUser(Model model, Principal principal) {
+    public String showNewUserForm(Model model, Principal principal) {
         if (principal != null) {
             User principalUser = userService.getUserByUsername(principal.getName());
             model.addAttribute("principal", principalUser);
@@ -50,8 +42,8 @@ public class MyController {
         return "new";
     }
 
-    @PostMapping("/new")
-    public String addNewUser(@ModelAttribute("user") User user) {
+    @PostMapping("/saveNewUser")
+    public String saveNewUser(@ModelAttribute("user") User user) {
         String password = new BCryptPasswordEncoder().encode(user.getPassword());
         userService.addUser(user.getUsername(), password, user.getFirstName(), user.getLastName(), user.getEmail());
         return "redirect:/";
@@ -64,12 +56,6 @@ public class MyController {
         modelAndView.addObject("principal", user);
         modelAndView.setViewName("edit");
         return modelAndView;
-    }
-
-    @PostMapping("/delete")
-    public String deleteUser(@ModelAttribute("deleteUser") String deleteUser) {
-        userService.deleteUser(deleteUser);
-        return "redirect:/list";
     }
 
     @PostMapping("/update")

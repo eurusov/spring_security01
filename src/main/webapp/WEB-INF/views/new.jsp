@@ -48,7 +48,7 @@
 <div style="background-color: var(--header-active); padding-top: 2px; margin: 0"></div>
 
 <div class="content">
-    <form action="new" method="POST">
+    <form action="saveNewUser" method="POST">
         <label>Username
             <input type="text" name="username" size="50" required
                    value="${user.username}">

@@ -1,8 +1,6 @@
 package spring_test.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring_test.dao.UserRepository;
@@ -57,9 +55,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUserList() {
         List<User> userList = userRepository.findAll();
-        // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
         //noinspection ResultOfMethodCallIgnored
-        userList.forEach((u) -> u.getAuthorities().size());
+        userList.forEach((u) -> u.getAuthorities().size());  // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
         return userList;
     }
 
@@ -85,16 +82,6 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.deleteById(username);
         return true;
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.getOne(username);
-        // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
-        //noinspection ResultOfMethodCallIgnored
-        user.getAuthorities().size();
-        return user;
     }
 
 //    @Transactional(readOnly = true)
