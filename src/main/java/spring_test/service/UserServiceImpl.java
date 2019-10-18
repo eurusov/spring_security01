@@ -45,19 +45,13 @@ public class UserServiceImpl implements UserService {
         if (!userRepository.existsById(username)) {
             return null;
         }
-        User user = userRepository.getOne(username);
-        //noinspection ResultOfMethodCallIgnored
-        user.getAuthorities().size();  // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
-        return user;
+        return userRepository.getOneWithAuthorities(username);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<User> getUserList() {
-        List<User> userList = userRepository.findAll();
-        //noinspection ResultOfMethodCallIgnored
-        userList.forEach((u) -> u.getAuthorities().size());  // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
-        return userList;
+        return userRepository.getUserList();
     }
 
     @Transactional

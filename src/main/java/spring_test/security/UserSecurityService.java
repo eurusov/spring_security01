@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import spring_test.dao.UserRepository;
-import spring_test.model.User;
 
 @Component
 public class UserSecurityService implements UserDetailsService {
@@ -22,10 +21,6 @@ public class UserSecurityService implements UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.getOne(username);
-
-        //noinspection ResultOfMethodCallIgnored
-        user.getAuthorities().size();  // (!!!) This is to avoid LazyInitializationException when getting detached user outside of service layer.
-        return user;
+        return userRepository.getOneWithAuthorities(username);
     }
 }
