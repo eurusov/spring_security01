@@ -63,7 +63,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="delete" method="post" style="margin: 0 0">
+                    <form action="admin/delete" method="post" style="margin: 0 0">
                         <input type="hidden" name="deleteUser" value="${user.username}"/>
                         <button type="submit">DELETE</button>
                     </form>

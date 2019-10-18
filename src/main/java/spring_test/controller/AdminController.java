@@ -6,12 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import spring_test.model.User;
 import spring_test.service.UserService;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     private UserService userService;
 
@@ -20,7 +22,7 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping("")
     public String showUserListForAdmin(Model model) {
         List<User> userList = userService.getUserList();
         model.addAttribute("userList", userList);
