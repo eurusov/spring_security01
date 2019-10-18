@@ -55,6 +55,7 @@ public class JpaConfig {
         hibernateProps.setProperty("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
         hibernateProps.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         hibernateProps.setProperty("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
+        hibernateProps.setProperty("hibernate.use_sql_comments", env.getProperty("hibernate.use_sql_comments"));
         hibernateProps.setProperty("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
 //        hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", env.getProperty("hibernate.cache.use_second_level_cache"));
 //        hibernateProperties.setProperty("hibernate.cache.use_query_cache", env.getProperty("hibernate.cache.use_query_cache"));

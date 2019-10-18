@@ -33,6 +33,7 @@ public class Authorities implements GrantedAuthority {
         return authorityId;
     }
 
+    @Override
     public String getAuthority() {
         return authority;
     }
