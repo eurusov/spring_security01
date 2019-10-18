@@ -20,16 +20,16 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/list")
-    public String list(Model model) {
+    @GetMapping("/admin")
+    public String showUserListForAdmin(Model model) {
         List<User> userList = userService.getUserList();
-        model.addAttribute("listUser", userList);
+        model.addAttribute("userList", userList);
         return "user-list";
     }
 
     @PostMapping("/delete")
     public String deleteUser(@ModelAttribute("deleteUser") String deleteUser) {
         userService.deleteUser(deleteUser);
-        return "redirect:/list";
+        return "redirect:/admin";
     }
 }

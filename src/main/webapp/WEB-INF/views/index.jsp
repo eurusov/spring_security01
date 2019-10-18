@@ -40,7 +40,7 @@
             </li>
             <c:if test='${admin == 1}'>
                 <li>
-                    <a href="list">User List</a>
+                    <a href="admin">User List</a>
                 </li>
 
                 <li>

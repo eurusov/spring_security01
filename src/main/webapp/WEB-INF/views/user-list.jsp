@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%request.setCharacterEncoding("UTF-8");%>
+<%--<%request.setCharacterEncoding("UTF-8");%>--%>
 <html>
 <head>
     <title>User Management Application</title>
@@ -23,7 +23,7 @@
                 <a href=".">Home</a>
             </li>
             <li>
-                <a class="active" href="list">User List</a>
+                <a class="active" href="admin">User List</a>
             </li>
             <li>
                 <a href="new">New User</a>
@@ -49,7 +49,7 @@
             <th></th>
             <th></th>
         </tr>
-        <c:forEach var="user" items="${listUser}">
+        <c:forEach var="user" items="${userList}">
             <tr>
                 <td><c:out value="${user.username}"/></td>
                 <td><c:out value="${user.firstName}"/></td>

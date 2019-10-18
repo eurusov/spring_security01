@@ -27,7 +27,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.authenticationSuccessHandler = authenticationSuccessHandler;
     }
 
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -43,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        String encoded = new BCryptPasswordEncoder().encode("1");
 //        System.out.println(encoded);
         http
-                .authorizeRequests().antMatchers("/list", "/delete").hasRole("ADMIN")
+                .authorizeRequests().antMatchers("/admin", "/delete").hasRole("ADMIN")
                 .and()
                 .authorizeRequests().antMatchers("/edit", "/update").hasAnyRole("ADMIN", "USER")
                 .and()
