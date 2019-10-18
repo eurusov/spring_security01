@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import spring_test.service.UserService;
 
 @Controller
-public class AnyUserController {
+public class AnonymousController {
     private UserService userService;
 
     @Autowired

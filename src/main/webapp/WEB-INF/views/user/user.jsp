@@ -1,10 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.servletContext.contextPath}" scope="page"/>
 <html>
 <head>
     <title>Spring Security User Management Application</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300&display=swap" rel="stylesheet">
+    <%--    <link href="general.css" rel="stylesheet" type="text/css" >--%>
+    <%--    <link href="${pageContext.request.contextPath}/general.css" rel="stylesheet" type="text/css">--%>
     <style>
         <%@include file="../general.css"%>
         .field_name {
@@ -34,7 +37,7 @@
                 <a href="logout">Logout</a>
             </li>
             <li style="float:right">
-                <a href="edit">Edit</a>
+                <a href="${path}/edit">Edit profile</a>
             </li>
         </ul>
     </div>
@@ -59,10 +62,10 @@
             <td class="field_name">E-mail:</td>
             <td><c:out value="${principal.email}"/></td>
         </tr>
-        <form action="edit" method="post">
-            <input class="form_button" type="submit" value="EDIT" style="margin-top: 102px; margin-left: 42px"/>
-            <input type="hidden" name="editUsername" value="${principal.username}"/>
-        </form>
+<%--        <form action="edit" method="post">--%>
+<%--            <input class="form_button" type="submit" value="EDIT" style="margin-top: 102px; margin-left: 42px"/>--%>
+<%--            <input type="hidden" name="editUsername" value="${principal.username}"/>--%>
+<%--        </form>--%>
     </table>
 </div>
 </body>

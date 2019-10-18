@@ -27,7 +27,7 @@
                 <a href="${path}/admin/new">New User</a>
             </li>
             <li style="float:right; margin: 0">
-                <a href="${path}/logout">Logout</a>
+                <a href="logout">Logout</a>
             </li>
             <li style="float:right">
                 <a href="${path}/admin/profile">View profile</a>
