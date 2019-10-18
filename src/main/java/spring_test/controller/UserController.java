@@ -44,8 +44,8 @@ public class UserController {
 
     @PostMapping("/saveNewUser")
     public String saveNewUser(@ModelAttribute("user") User user) {
-        String password = new BCryptPasswordEncoder().encode(user.getPassword());
-        userService.addUser(user.getUsername(), password, user.getFirstName(), user.getLastName(), user.getEmail());
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        userService.addUser(user);
         return "redirect:/";
     }
 

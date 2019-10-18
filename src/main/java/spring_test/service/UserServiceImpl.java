@@ -21,17 +21,10 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public boolean addUser(String username, String password, String firstName, String lastName, String email) {
-        if (userRepository.existsById(username)) {
+    public boolean addUser(User user) {
+        if (userRepository.existsById(user.getUsername())) {
             return false;
         }
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setEnabled(true);
         Authorities authority = new Authorities(user);
         authority.setAuthority("ROLE_USER");
         user.getAuthorities().add(authority);
