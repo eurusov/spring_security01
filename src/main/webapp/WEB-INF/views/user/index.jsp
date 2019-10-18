@@ -1,18 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%request.setCharacterEncoding("UTF-8");%>
 <html>
 <head>
-    <title>User Management Application</title>
+    <title>Spring Security User Management Application</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300&display=swap" rel="stylesheet">
     <style>
-        <%@include file="general.css"%>
-
+        <%@include file="../general.css"%>
         .field_name {
             width: 128px;
         }
-
         input[type=submit] {
             background-color: var(--main-green);
             color: white;
@@ -27,26 +24,12 @@
     </style>
 </head>
 <body>
-
-<c:if test='${principal.getRole() eq "ADMIN"}'>
-    <c:set var="admin" value="1"/>
-</c:if>
-
 <div style="background-color: var(--header-background)">
     <div class="content">
         <ul>
             <li>
                 <a class="active" href="">Home</a>
             </li>
-            <c:if test='${admin == 1}'>
-                <li>
-                    <a href="admin">User List</a>
-                </li>
-
-                <li>
-                    <a href="new">New User</a>
-                </li>
-            </c:if>
             <li style="float:right; margin: 0">
                 <a href="logout">Logout</a>
             </li>

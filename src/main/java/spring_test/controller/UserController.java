@@ -28,7 +28,7 @@ public class UserController {
     public String index(Model model, Principal principal) {
         User loggedUser = userService.getUserByUsername(principal.getName());
         model.addAttribute("principal", loggedUser);
-        return "index";
+        return "user/index";
     }
 
     @GetMapping("/new")
@@ -54,7 +54,7 @@ public class UserController {
         User user = userService.getUserByUsername(principal.getName());
         modelAndView.addObject("user", user);
         modelAndView.addObject("principal", user);
-        modelAndView.setViewName("edit");
+        modelAndView.setViewName("user/edit");
         return modelAndView;
     }
 
@@ -75,6 +75,6 @@ public class UserController {
             return "redirect:/";
         }
         model.addAttribute("user", user);
-        return "edit";
+        return "user/edit";
     }
 }
