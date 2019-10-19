@@ -30,13 +30,8 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String showNewUserForm(Model model, Principal principal) {
-        if (principal != null) {
-            User principalUser = userService.getUserByUsername(principal.getName());
-            model.addAttribute("principal", principalUser);
-        }
-        User user = new User();
-        model.addAttribute("user", user);
+    public String showNewUserForm(Model model) {
+        model.addAttribute("user", new User());
         return "new";
     }
 

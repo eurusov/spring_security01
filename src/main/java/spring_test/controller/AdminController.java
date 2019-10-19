@@ -31,8 +31,7 @@ public class AdminController {
 
     @GetMapping("/new")
     public String showNewFromAdmin(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("user", new User());
         return "admin/new";
     }
 
