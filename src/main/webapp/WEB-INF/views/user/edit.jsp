@@ -1,17 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.servletContext.contextPath}" scope="page"/>
 <html>
 <head>
     <title>Spring Security User Management Application</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300&display=swap" rel="stylesheet">
-    <%--    <link href="general.css" rel="stylesheet" type="text/css" >--%>
-    <%--    <link href="${pageContext.request.contextPath}/general.css" rel="stylesheet" type="text/css">--%>
-    <style>
-        <%@include file="../general.css"%>
-        <%@include file="../form.css"%>
-    </style>
+    <link href="<spring:url value="/css/general.css"/>" rel="stylesheet" type="text/css">
+    <link href="<spring:url value="/css/form.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div style="background-color: var(--header-background)">

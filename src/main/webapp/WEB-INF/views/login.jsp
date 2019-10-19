@@ -1,16 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%request.setCharacterEncoding("UTF-8");%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<c:set var="path" value="${pageContext.servletContext.contextPath}" scope="page"/>
 <html>
 <head>
-    <title>User Management Application</title>
+    <title>Spring Security User Management Application</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300&display=swap" rel="stylesheet">
-    <style>
-        <%@include file="general.css"%>
-        <%@include file="form.css"%>
-    </style>
+    <link href="<spring:url value="/css/general.css"/>" rel="stylesheet" type="text/css">
+    <link href="<spring:url value="/css/form.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div style="background-color: var(--header-background)">
@@ -20,7 +18,7 @@
                 <a class="active" href="">Login</a>
             </li>
             <li>
-                <a href="new">New User</a>
+                <a href="new">Sign Up</a>
             </li>
         </ul>
     </div>
@@ -36,7 +34,7 @@
         <input type="password" id="password" name="password" size="45"
                value="${user.password}"
         >
-        <input type="submit" value="Login">
+        <input type="submit" value="Sign In">
     </form>
 </div>
 <div class="content">
