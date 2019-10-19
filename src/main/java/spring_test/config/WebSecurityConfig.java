@@ -42,13 +42,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        String encoded = new BCryptPasswordEncoder().encode("1");
 //        System.out.println(encoded);
         http
-                .authorizeRequests().antMatchers("/admin", "/delete").hasRole("ADMIN")
+                .authorizeRequests().antMatchers("/css/**").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/edit", "/update").hasAnyRole("ADMIN", "USER")
+                .authorizeRequests().antMatchers("/new", "/saveNewUser").anonymous()
                 .and()
-                .authorizeRequests().antMatchers("/css/**", "/new", "/saveNewUser").permitAll()
-                .and()
-                .authorizeRequests().anyRequest().hasAnyRole("ADMIN", "USER")
+                .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .authorizeRequests().antMatchers("/login**").permitAll()
                 .and()

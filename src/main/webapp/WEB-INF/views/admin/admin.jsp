@@ -56,13 +56,13 @@
                 <td> ${user.email} </td>
                 <td> ${user.getRole()} </td>
                 <td>
-                    <form action="admin/edit" method="post" style="margin: 0 0">
+                    <form action="${path}/admin/edit" method="post" style="margin: 0 0">
                         <input type="hidden" name="editUsername" value="${user.username}"/>
                         <button type="submit">EDIT</button>
                     </form>
                 </td>
                 <td>
-                    <form action="admin/delete" method="post" style="margin: 0 0">
+                    <form action="${path}/admin/delete" method="post" style="margin: 0 0">
                         <input type="hidden" name="deleteUser" value="${user.username}"/>
                         <button type="submit">DELETE</button>
                     </form>
