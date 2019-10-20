@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-    @Query("select u from User u join fetch u.authorities a")
+    @Query("select u from User u join fetch u.authorities a order by u.userId")
     List<User> getUserList();
 
     @Query("select u from User u join fetch u.authorities a where u.username = :username")
