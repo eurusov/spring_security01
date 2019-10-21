@@ -17,11 +17,11 @@
             <li>
                 <a href="${path}/">Home</a>
             </li>
+            <li>
+                <a class="active" href="${path}/edit">Edit profile</a>
+            </li>
             <li style="float:right; margin: 0">
                 <a href="logout">Logout</a>
-            </li>
-            <li style="float:right">
-                <a class="active" href="${path}/edit">Edit profile</a>
             </li>
         </ul>
     </div>
