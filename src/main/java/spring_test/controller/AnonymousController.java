@@ -22,8 +22,8 @@ public class AnonymousController {
     }
 
     @GetMapping("/new")
-    public String showNewUserForm(Model model) {
-        model.addAttribute("user", new User());
+    public String showNewUserForm() {
+//        model.addAttribute("user", new User());
         return "new";
     }
 

@@ -36,24 +36,19 @@
 <div class="content">
     <form action="saveNewUser" method="POST">
         <label>Username
-            <input type="text" name="username" size="50" required
-                   value="${user.username}">
+            <input type="text" name="username" size="50" required>
         </label>
         <label>Password
-            <input type="password" name="password" size="100" required
-                   value="${user.password}">
+            <input type="password" name="password" size="100" required>
         </label>
         <label>First name
-            <input type="text" name="firstName" size="50"
-                   value="${user.firstName}">
+            <input type="text" name="firstName" size="50">
         </label>
         <label>Last name
-            <input type="text" name="lastName" size="50"
-                   value="${user.lastName}">
+            <input type="text" name="lastName" size="50">
         </label>
         <label>E-mail
-            <input type="text" name="email" size="50"
-                   value="${user.email}">
+            <input type="text" name="email" size="50">
         </label>
         <input type="submit" value="save">
     </form>

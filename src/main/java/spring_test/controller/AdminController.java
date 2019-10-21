@@ -30,8 +30,8 @@ public class AdminController {
     }
 
     @GetMapping("/new")
-    public String showNewFromAdmin(Model model) {
-        model.addAttribute("user", new User());
+    public String showNewFromAdmin() {
+//        model.addAttribute("user", new User());
         return "admin/new";
     }
 
