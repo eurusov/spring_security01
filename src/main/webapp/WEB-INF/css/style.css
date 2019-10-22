@@ -1,0 +1,91 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    min-width: 800px;
+    font-family: "IBM Plex Sans", serif;
+}
+
+.leftSideMenuTabs {
+    margin-top: 2rem;
+}
+
+.mainAreaHeader {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.mainTabs {
+    margin-top: 2rem;
+}
+
+.userListTop {
+    margin-top: 1rem;
+}
+
+.formFields {
+    margin-bottom: 1rem;
+}
+
+label {
+    margin-bottom: 4px;
+}
+
+#cover {
+    background: #ebebeb center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+#cover-caption {
+    width: 100%;
+}
+
+.wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#submitBtn {
+    /*width: 140px;*/
+    height: 45px;
+    /*font-family: 'Roboto', sans-serif;*/
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /*font-weight: 500;*/
+    color: #fff;
+    background-color: #a4a4a4;
+    border: none;
+    border-radius: 45px;
+    /*box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);*/
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+#submitBtn:hover {
+    background-color: #2EE59D;
+    /*box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);*/
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+.form-control::placeholder {
+    color: #b2b2b2;
+    font-size: small;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.formCaption {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
