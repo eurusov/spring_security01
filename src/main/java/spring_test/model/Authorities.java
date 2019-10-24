@@ -1,9 +1,6 @@
 package spring_test.model;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @ToString
 @Getter
 @Setter
+@NoArgsConstructor
 public class Authorities implements GrantedAuthority {
 
     @Id
@@ -28,10 +26,6 @@ public class Authorities implements GrantedAuthority {
     @JoinColumn(name = "username")
     @ToString.Exclude
     private User user;
-
-    // Constructor
-    public Authorities() {
-    }
 
     // Constructor
     public Authorities(User user) {
