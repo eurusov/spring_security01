@@ -1,12 +1,15 @@
 package spring_test.rest.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import spring_test.model.User;
 import spring_test.service.UserService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("admin")
@@ -18,8 +21,20 @@ public class MainRestController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/{username}", produces = "application/json")
-    public User getUser(@PathVariable String username) {
-        return userService.getUserByUsername(username);
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String getUserList() throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writerFor(List.class).withDefaultPrettyPrinter();
+        return ow.writeValueAsString(userService.getUserList());
+    }
+
+    @GetMapping(value = "users/{username}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String getUser(@PathVariable String username) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writerFor(User.class).withDefaultPrettyPrinter();
+        return ow.writeValueAsString(userService.getUserByUsername(username));
+    }
+
+    @DeleteMapping(value = "delete/{username}")
+    public void deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
     }
 }

@@ -1,5 +1,6 @@
 package spring_test.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -25,6 +26,7 @@ public class Authorities implements GrantedAuthority {
     @ManyToOne
     @JoinColumn(name = "username")
     @ToString.Exclude
+    @JsonIgnore
     private User user;
 
     // Constructor
