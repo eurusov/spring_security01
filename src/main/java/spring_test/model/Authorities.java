@@ -1,16 +1,24 @@
 package spring_test.model;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "authorities")
+@ToString
+@Getter
+@Setter
 public class Authorities implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "authority_id")
+    @Setter(AccessLevel.NONE)
     private Long authorityId;
 
     @Column(name = "authority")
@@ -18,49 +26,15 @@ public class Authorities implements GrantedAuthority {
 
     @ManyToOne
     @JoinColumn(name = "username")
+    @ToString.Exclude
     private User user;
 
-    // Constructors
+    // Constructor
     public Authorities() {
     }
 
+    // Constructor
     public Authorities(User user) {
         this.user = user;
-    }
-
-    // Getters
-    public Long getAuthorityId() {
-        return authorityId;
-    }
-
-    @Override
-    public String getAuthority() {
-        return authority;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    // Setters
-    public void setAuthorityId(Long authorityId) {
-        this.authorityId = authorityId;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Authorities{" +
-                "authorityId=" + authorityId +
-                ", authority='" + authority + '\'' +
-                ", username=" + user.getUsername() +  // User replaced to username, to avoid cyclic dependency and stack overflow.
-                '}';
     }
 }
