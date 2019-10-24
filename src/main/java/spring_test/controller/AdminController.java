@@ -22,10 +22,12 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("")
-    public String showUserListForAdmin(Model model) {
+    @GetMapping
+    public String showUserListForAdmin(Model model, Principal principal) {
         List<User> userList = userService.getUserList();
         model.addAttribute("userList", userList);
+        User loggedUser = userService.getUserByUsername(principal.getName());
+        model.addAttribute("principal", loggedUser);
         return "admin/admin";
     }
 

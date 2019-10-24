@@ -2,70 +2,98 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.servletContext.contextPath}" scope="page"/>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Spring Security User Management Application</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300&display=swap" rel="stylesheet">
-    <link href="<spring:url value="/css/general.css"/>" rel="stylesheet" type="text/css">
-    <style>
-        .field_name {
-            width: 128px;
-        }
-        input[type=submit] {
-            background-color: var(--main-green);
-            color: white;
-            width: 150px;
-            padding: 10px 0;
-            margin: 30px 0;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='<spring:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
+    <title>Spring Security with Bootstrap</title>
 </head>
 <body>
-<div style="background-color: var(--header-background)">
-    <div class="content">
-        <ul>
-            <li>
-                <a class="active" href="">Home</a>
-            </li>
-            <li>
-                <a href="${path}/edit">Edit profile</a>
-            </li>
-            <li style="float:right; margin: 0">
-                <a href="logout">Logout</a>
-            </li>
-        </ul>
+<%--Header--%>
+<nav class="navbar bg-dark navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-brand">
+            <h2 class="navbar-brand">Spring Security with Bootstrap</h2>
+        </div>
+        <div class="navbar-nav">
+            <a class="nav-link" href="${path}/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <%--Left side area--%>
+        <div class="col-2 pr-0">
+            <%--Left side menu--%>
+            <div class="list-group list-group-flush mt-5" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action rounded-0 active" id="list-profile-list"
+                   data-toggle="list"
+                   href="#principal-profile" role="tab">Profile</a>
+            </div>
+        </div>
+        <%--Main area--%>
+        <div class="col-10 border-left pl-0">
+            <div class="tab-content mainTabs" id="nav-tabContent">
+                <%--Principal profile--%>
+                <div class="tab-pane fade show active" id="principal-profile" role="tabpanel">
+                    <%--Principal profile header--%>
+                    <div class="mainAreaHeader">
+                        <h2>Your profile details</h2>
+                    </div>
+                    <div class="p-3 pr-5">
+                        <table class="table table-striped border m-2 mr-5">
+                            <tbody>
+                            <tr>
+                                <th scope="row" class="col-md-3">Id:</th>
+                                <td>${principal.userId}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Username:</th>
+                                <td>${principal.username}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">First Name:</th>
+                                <td>${principal.firstName}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Last Name:</th>
+                                <td>${principal.lastName}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">E-mail:</th>
+                                <td>${principal.email}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Role:</th>
+                                <td>${principal.getRole()}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div style="background-color: var(--header-active); padding-top: 2px; margin: 0"></div>
-<div class="content">
-    <table style="float: left">
-        <caption><p>Your profile details:</p></caption>
-        <tr>
-            <td class="field_name">Username:</td>
-            <td><c:out value="${principal.username}"/></td>
-        </tr>
-        <tr>
-            <td class="field_name">First name:</td>
-            <td><c:out value="${principal.firstName}"/></td>
-        </tr>
-        <tr>
-            <td class="field_name">Last name:</td>
-            <td><c:out value="${principal.lastName}"/></td>
-        </tr>
-        <tr>
-            <td class="field_name">E-mail:</td>
-            <td><c:out value="${principal.email}"/></td>
-        </tr>
-<%--        <form action="edit" method="post">--%>
-<%--            <input class="form_button" type="submit" value="EDIT" style="margin-top: 102px; margin-left: 42px"/>--%>
-<%--            <input type="hidden" name="editUsername" value="${principal.username}"/>--%>
-<%--        </form>--%>
-    </table>
-</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

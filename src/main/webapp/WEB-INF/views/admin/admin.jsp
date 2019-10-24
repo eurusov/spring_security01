@@ -5,24 +5,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <%--    <link href='<spring:url value="/css/general.css"/>' rel="stylesheet" type="text/css">--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#editEditDialog").on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                $(this).find('#modalUserId').val(button.data('user-id'));
+                $(this).find('#hiddenUsername').val(button.data('username'));
+                $(this).find('#modalUsername').val(button.data('username'));
+                $(this).find('#modalFirstName').val(button.data('first-name'));
+                $(this).find('#modalLastName').val(button.data('last-name'));
+                $(this).find('#modalEmail').val(button.data('email'));
+                $(this).find('#modalRole').val(button.data('role'));
+            });
+        });
+        <%--$(function () {--%>
+        <%--    $("#editEditDialog").on('show.bs.modal', function () {--%>
+        <%--        alert(${userList[2].userId});--%>
+        <%--        $("#modalTestInput").val("${userList[2].userId}");--%>
+        <%--    });--%>
+        <%--});--%>
+    </script>
     <link href='<spring:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
-
     <title>Spring Security with Bootstrap</title>
 </head>
 <body>
-<!--Header-->
+<%--Header--%>
 <nav class="navbar bg-dark navbar-dark">
     <div class="container-fluid">
         <div class="navbar-brand">
@@ -35,44 +52,46 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <!-- Left side menu -->
+        <%--Left side area--%>
         <div class="col-2 pr-0">
+            <%--Left side menu--%>
             <div class="list-group list-group-flush mt-5" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action rounded-0 active" id="list-home-list"
                    data-toggle="list"
-                   href="#list-home" role="tab">Admin panel</a>
+                   href="#admin-panel" role="tab">Admin panel</a>
                 <a class="list-group-item list-group-item-action rounded-0" id="list-profile-list" data-toggle="list"
-                   href="#list-profile" role="tab">Profile</a>
+                   href="#principal-profile" role="tab">Profile</a>
             </div>
         </div>
-        <!-- Main area -->
+        <%--Main area--%>
         <div class="col-10 border-left pl-0">
             <div class="tab-content mainTabs" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="list-home" role="tabpanel">
+                <%--Admin Panel--%>
+                <div class="tab-pane fade show active" id="admin-panel" role="tabpanel">
                     <div class="mainAreaHeader">
                         <h2>Admin Panel</h2>
                     </div>
-
+                    <%--Tabs--%>
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link disabled"></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#home">User table</a>
+                            <a class="nav-link active" data-toggle="tab" href="#user-list">User table</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#newUser">New user</a>
+                            <a class="nav-link" data-toggle="tab" href="#new-user">New user</a>
                         </li>
                     </ul>
-
-                    <!-- Tab panes -->
+                    <%--Tab panes--%>
                     <div class="tab-content">
-                        <div class="tab-pane active container-fluid" id="home">
+                        <%--User list pane--%>
+                        <div class="tab-pane container-fluid active" id="user-list">
                             <!--User list table header -->
                             <div class="container-fluid userListTop">
                                 <h4>All users</h4>
                             </div>
-                            <table class="table table-striped border-left border-right">
+                            <table class="table table-striped border">
                                 <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -95,25 +114,86 @@
                                         <td>${user.email}</td>
                                         <td>${user.getRole()}</td>
                                         <td>
-                                            <form action="${path}/admin/edit" method="post" style="margin: 0 0">
+                                            <form action="#" method="post"
+                                                  class="p-0 m-0 justify-content-center align-items-center">
                                                 <input type="hidden" name="editUsername" value="${user.username}"/>
-                                                <button type="submit">EDIT</button>
+                                                <!-- Button to Open the Modal -->
+                                                <button type="button"
+                                                        data-user-id="${user.userId}"
+                                                        data-username="${user.username}"
+                                                        data-first-name="${user.firstName}"
+                                                        data-last-name="${user.lastName}"
+                                                        data-email="${user.email}"
+                                                        data-role="${user.getRole()}"
+                                                        class="btn btn-block btn-link p-0 tableBtn"
+                                                        data-toggle="modal" data-target="#editEditDialog"><i
+                                                        class="fa fa-edit tableBtn"></i></button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="${path}/admin/delete" method="post" style="margin: 0 0">
+                                            <form action="${path}/admin/delete" method="post"
+                                                  class="p-0 m-0 justify-content-center align-items-center">
                                                 <input type="hidden" name="deleteUser" value="${user.username}"/>
-                                                <button type="submit">DELETE</button>
+                                                <button type="submit" class="btn btn-block btn-link p-0 tableBtn"><i
+                                                        class="fa fa-trash tableBtn"></i></button>
                                             </form>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
+
+                            <!-- The Modal -->
+                            <div class="modal fade" id="editEditDialog" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Edit user data</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body px-4">
+                                            <form action="${path}/admin/update" method="post">
+                                                <input type="text" class="form-control formFields"
+                                                       id="hiddenUsername" name="username" hidden>
+                                                <label for="modalUserId">Id:</label>
+                                                <input type="text" class="form-control formFields"
+                                                       id="modalUserId" name="userId" disabled>
+                                                <label for="modalUsername">Username:</label>
+                                                <input type="text" class="form-control formFields"
+                                                       id="modalUsername" disabled>
+                                                <label for="modalFirstName">First name:</label>
+                                                <input type="text" class="form-control formFields"
+                                                       id="modalFirstName" name="firstName" autocomplete="off">
+                                                <label for="modalLastName">Last name:</label>
+                                                <input type="text" class="form-control formFields"
+                                                       id="modalLastName" name="lastName" autocomplete="off">
+                                                <label for="modalEmail">E-mail:</label>
+                                                <input type="text" class="form-control formFields"
+                                                       id="modalEmail" name="email" autocomplete="off">
+                                                <label for="modalRole">Role:</label>
+                                                <input type="text" class="form-control formFields"
+                                                       id="modalRole" name="role" autocomplete="off">
+                                                <button type="submit" class="btn btn-primary btn-block mt-5 mb-3">Save
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer px-4">
+                                            <button type="button" class="btn btn-outline-secondary px-4"
+                                                    data-dismiss="modal">Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="tab-pane container-fluid" id="newUser">
+                        <div class="tab-pane container-fluid" id="new-user">
                             <div class="container-fluid userListTop col-6 float-left">
                                 <h4>Add new user</h4>
+                                <%--New user form--%>
                                 <form action="${path}/admin/saveNewUser" method="post">
                                     <div class="form-group">
                                         <label for="username">Username:</label>
@@ -138,14 +218,44 @@
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-                <div class="tab-pane fade" id="list-profile" role="tabpanel">
+                <%--Principal profile--%>
+                <div class="tab-pane fade" id="principal-profile" role="tabpanel">
+                    <%--Principal profile header--%>
                     <div class="mainAreaHeader">
                         <h2>Your profile details</h2>
+                    </div>
+                    <div class="p-3 pr-5">
+                        <table class="table table-striped border m-2 mr-5">
+                            <tbody>
+                            <tr>
+                                <th scope="row" class="col-md-3">Id:</th>
+                                <td>${principal.userId}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Username:</th>
+                                <td>${principal.username}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">First Name:</th>
+                                <td>${principal.firstName}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Last Name:</th>
+                                <td>${principal.lastName}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">E-mail:</th>
+                                <td>${principal.email}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Role:</th>
+                                <td>${principal.getRole()}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

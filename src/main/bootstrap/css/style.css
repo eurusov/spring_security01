@@ -89,3 +89,11 @@ label {
     text-transform: uppercase;
     letter-spacing: 3px;
 }
+
+.tableBtn {
+    color: #3a3a3a;
+}
+
+.tableBtn:hover {
+    color: #94142b;
+}
