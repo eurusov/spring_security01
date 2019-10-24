@@ -31,17 +31,17 @@ public class UserController {
         return "user/user";
     }
 
-    @GetMapping("/edit")
-    public ModelAndView editUserGet(ModelAndView modelAndView, Principal principal) {
-        User user = userService.getUserByUsername(principal.getName());
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("user/edit");
-        return modelAndView;
-    }
-
-    @PostMapping("/update")
-    public String updateEditedUser(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
-        return "redirect:/";
-    }
+//    @GetMapping("/edit")
+//    public ModelAndView editUserGet(ModelAndView modelAndView, Principal principal) {
+//        User user = userService.getUserByUsername(principal.getName());
+//        modelAndView.addObject("user", user);
+//        modelAndView.setViewName("user/edit");
+//        return modelAndView;
+//    }
+//
+//    @PostMapping("/update")
+//    public String updateEditedUser(@ModelAttribute("user") User user) {
+//        userService.updateUser(user);
+//        return "redirect:/";
+//    }
 }

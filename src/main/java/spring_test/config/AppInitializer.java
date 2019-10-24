@@ -10,7 +10,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     // Load database and spring security configuration
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{JpaConfig.class, WebSecurityConfig.class, AdminSecurityConfig.class};
+        return new Class[]{JpaConfig.class, WebSecurityConfig.class};
     }
 
     @Override

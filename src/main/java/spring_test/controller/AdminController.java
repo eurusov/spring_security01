@@ -31,11 +31,11 @@ public class AdminController {
         return "admin/admin";
     }
 
-    @GetMapping("/new")
-    public String showNewFromAdmin() {
+//    @GetMapping("/new")
+//    public String showNewFromAdmin() {
 //        model.addAttribute("user", new User());
-        return "admin/new";
-    }
+//        return "admin/new";
+//    }
 
     @PostMapping("/saveNewUser")
     public String saveNewUser(@ModelAttribute("user") User user) {
@@ -44,27 +44,27 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/profile")
-    public String index(Model model, Principal principal) {
-        User loggedUser = userService.getUserByUsername(principal.getName());
-        model.addAttribute("principal", loggedUser);
-        return "admin/profile";
-    }
+//    @GetMapping("/profile")
+//    public String index(Model model, Principal principal) {
+//        User loggedUser = userService.getUserByUsername(principal.getName());
+//        model.addAttribute("principal", loggedUser);
+//        return "admin/profile";
+//    }
 
-    @GetMapping("/profile/edit")
-    public ModelAndView editUserGet(ModelAndView modelAndView, Principal principal) {
-        User user = userService.getUserByUsername(principal.getName());
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("admin/edit");
-        return modelAndView;
-    }
+//    @GetMapping("/profile/edit")
+//    public ModelAndView editUserGet(ModelAndView modelAndView, Principal principal) {
+//        User user = userService.getUserByUsername(principal.getName());
+//        modelAndView.addObject("user", user);
+//        modelAndView.setViewName("admin/edit");
+//        return modelAndView;
+//    }
 
-    @PostMapping("/edit")
-    public String showEditPage(@RequestParam("editUsername") String editUsername, Model model) {
-        User user = userService.getUserByUsername(editUsername);
-        model.addAttribute("user", user);
-        return "admin/edit";
-    }
+//    @PostMapping("/edit")
+//    public String showEditPage(@RequestParam("editUsername") String editUsername, Model model) {
+//        User user = userService.getUserByUsername(editUsername);
+//        model.addAttribute("user", user);
+//        return "admin/edit";
+//    }
 
     @PostMapping("/update")
     public String updateEditedUser(@ModelAttribute("user") User user) {
